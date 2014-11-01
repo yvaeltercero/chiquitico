@@ -1,0 +1,12 @@
+program x:
+
+var x, y: integer;
+begin
+	x := 0;
+	y := 1;
+   	output(x,y);
+	x :=: y;
+	output(x,y);
+	x :=: y;
+	output(x,y);
+end x.

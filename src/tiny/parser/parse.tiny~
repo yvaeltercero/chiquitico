@@ -1,0 +1,110 @@
+%%
+Tiny       -> PROGRAM Name ':' Consts TypesRule Dclns Body Name '.' => "program"
+            ;
+
+TypesRule  -> TYPE (TypeRule ';')*                                  => "types"
+           ->                                                       => "types"
+            ;
+
+TypeRule   -> Name EQ (Name | LitRule)                              => "type"
+            ;
+
+LitRule	   -> '('Name list ',' ')'                                  => "lit"
+            ;
+
+Dclns      -> VAR (Dcln ';')*                                       => "dclns"
+           ->                                                       => "dclns"
+            ;
+
+Dcln       -> Name list ',' ':' Name                                => "var"
+            ;
+
+Consts     -> CONST (ConstDcln ';')*                                => "<consts>"
+           ->                                                       => "<consts>"
+            ;
+
+ConstDcln  -> Name EQ ConstValues                                   => "const"
+            ;
+
+ConstValues -> INTEGER_NUM                                          => "<integer>"
+            -> CHARACTER                                            => "<char>"
+            -> Name
+            ;
+
+Body       -> BEGINX Statement list ';' END                         => "block"
+            ;
+
+Statement  -> Name ASSIGNMENT Expression                            => "assign"
+           -> OUTPUT '(' Expression list ',' ')'                    => "output"
+           -> READ '(' Name list ',' ')'                            => "read"
+           -> IF Expression THEN Statement
+                            (ELSE Statement)?                       => "if"
+           -> WHILE Expression DO Statement                         => "while"
+           -> REPEAT Statement list ';' UNTIL Expression            => "repeat"
+           -> LOOP Statement list ';' POOL                          => "loop"
+           -> EXIT                                                  => "exit"
+           -> Primary EQSWAP Primary                                => "<swap>"
+           -> FOR Name ASSIGNMENT Expression TO Expression
+              DO Statement                                          => "<upto>"
+           -> FOR Name ASSIGNMENT Expression DOWNTO Expression
+              DO Statement                                          => "<downto>"
+           -> CASE Expression OF (CaseClause)* (Otherwise)? END     => "case"
+           -> Body
+           ->                                                       => "<null>"
+            ;
+
+Otherwise  -> OTHERWISE Statement (';')?                            => "<otherwise>"
+            ;
+
+CaseClause -> Clause ':' Statement ';'                              => "<case_clause>"
+            ;
+
+Clause     -> Primary
+           -> Primary RANGE Primary                                 => "<range>"
+            ;
+
+Expression -> Term
+           -> Term LTE Term                                         => "<="
+           -> Term GTE Term                                         => ">="
+           -> Term EQ  Term                                         => "="
+           -> Term NE  Term                                         => "<>"
+           -> Term LT  Term                                         => "<"
+           -> Term GT  Term                                         => ">"
+            ;
+
+Term       -> Factor
+           -> Term '+'  Factor                                      => "+"
+           -> Term '-'  Factor                                      => "-"
+           -> Term OR   Factor                                      => "or"
+            ;
+
+Factor     -> S
+           -> Factor  AND  S                                        => "and"
+           -> Factor  '*'  S                                        => "*"
+           -> Factor  '/'  S                                        => "/"
+           -> Factor  MOD  S                                        => "mod"
+            ;
+
+S          -> Primary POW S                                         => "pow"
+           -> Primary
+            ;
+
+Primary    -> '-' Primary                                           => "neg"
+           -> '+' Primary
+           -> NOT Primary                                           => "not"
+           -> EOFX                                                  => "eof"
+           -> TRUE                                                  => "true"
+           -> FALSE                                                 => "false"
+           -> Name
+           -> INTEGER_NUM                                           => "<integer>"
+           -> CHARACTER                                             => "<char>"
+           -> STRING                                                => "<string>"
+           -> PRED '(' Expression ')'                               => "pred"
+           -> SUCC '(' Expression ')'                               => "succ"
+           -> ORD  '(' Expression ')'                               => "ord"
+           -> CHR  '(' Expression ')'                               => "chr"
+           -> '(' Expression ')'
+            ;
+
+Name       -> IDENTIFIER                                            => "<identifier>"
+            ;

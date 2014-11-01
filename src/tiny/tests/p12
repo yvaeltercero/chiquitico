@@ -1,0 +1,39 @@
+program pr3c02:
+{
+   the output should be
+   98   b
+}
+const
+   one = 1;
+   a = 'a';
+type
+   Color = (Red,Blue,White);
+   int = integer;
+var
+   x: char;
+   y: integer;
+   t: boolean;
+   z: int;
+   c: Color;
+begin
+   t := false;
+   x := 'a';
+   y := 03;
+   z := 10;
+   c := White;
+#   output(succ(y));
+#   output(t);
+   output(x);
+   output(y);
+#   output(z);
+#   output(c);
+#   output(Red);
+#   output("Mau");
+#   output("a\nb\tc");
+#   read(x);
+#   output(x);
+#   read(y);
+#   output(y);
+#   read(t);
+#   output(t);
+end pr3c02.

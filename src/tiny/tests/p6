@@ -1,0 +1,4 @@
+program x:
+begin
+   if eof then output(1) else output(2);
+end x.

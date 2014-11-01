@@ -1,0 +1,32 @@
+program pr3c24:
+
+{ The output should be:     }
+{                           }
+{  117 127 20 u             }
+{  118 245 21 v             }
+{  119 364 22 w             }
+{  120 484 23 x             }
+{  121 605 24 y             }
+{  122 727 25 z             }
+
+const a = 'a';
+      b = a;
+      x = 25;
+      t = true;
+
+var j, k, l : integer;
+    u, v, w : char;
+    f       : boolean;
+
+begin
+   j := 10;
+   k := 20;
+
+   for l := 20 to x do
+   begin
+      k := ord(a) + l;
+      j := pred(j) + succ(k);
+      u := chr( ord( a ) + l );
+      output( k, j, l, u );
+   end;
+end pr3c24.

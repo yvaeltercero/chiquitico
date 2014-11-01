@@ -1,0 +1,7 @@
+program x:
+
+var i, x, y: integer;
+begin
+	for i := 4 downto 1
+	do output(i);
+end x.

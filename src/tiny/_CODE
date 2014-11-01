@@ -1,0 +1,76 @@
+       LIT    0             
+       LIT    0             
+       LIT    0             
+       LIT    0             
+       SGV    2             
+       LIT    97            
+       SGV    0             
+       LIT    0             
+       SGV    1             
+L1     LGV    2             
+       UOP    UNOT          
+       COND   L2     L3     
+L2     LGV    0             
+       UOP    USUCC         
+       SGV    0             
+L4     LGV    1             
+       UOP    UPRED         
+       SGV    1             
+       LGV    1             
+       DUP                  
+       DUP                  
+       LIT    1             
+       BOP    BGE           
+       SWAP                 
+       LIT    5             
+       BOP    BLE           
+       BOP    BAND          
+       COND   L6     L7     
+L6     POP    1             
+       LGV    0             
+       SOS    OUTPUTC       
+       LGV    1             
+       SOS    OUTPUT        
+       SOS    OUTPUTL       
+       GOTO   L5            
+L7     POP    1             
+       LGV    1             
+       LIT    6             
+       BOP    BGE           
+       LGV    1             
+       LIT    9             
+       BOP    BLT           
+       BOP    BAND          
+       COND   L8     L9     
+L8     LGV    1             
+       LIT    97            
+       BOP    BPLUS         
+       SOS    OUTPUTC       
+       LGV    1             
+       SOS    OUTPUT        
+       SOS    OUTPUTL       
+       GOTO   L10           
+L9     LIT    1             
+       SGV    2             
+       NOP                  
+L5     LGV    2             
+       LIT    1             
+       BOP    BEQ           
+       COND   L11    L4     
+L11    LGV    0             
+       LIT    99            
+       BOP    BNE           
+       COND   L12    L13    
+L12    LIT    0             
+       SGV    2             
+       LGV    0             
+       SOS    OUTPUT        
+       LGV    0             
+       SOS    OUTPUTC       
+       SOS    OUTPUTL       
+       GOTO   L14           
+L13    LIT    1             
+       SGV    2             
+       NOP                  
+L14    GOTO   L1            
+L3     HALT                 
