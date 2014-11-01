@@ -1,13 +1,10 @@
-```
-#!c
+<code>chiquitico v.0.1</code>
 
-chiquitico v.0.1
-```
 
 * Cross-compiler for Unix-like systems.
 
 ## **Devs** ##
 
-Mau Rodríguez Morales maUCRodriguez@gmail.com
+Mau Rodríguez Morales <code>maUCRodriguez@gmail.com</code>
 
 Universidad de Costa Rica
